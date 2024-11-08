@@ -8,8 +8,8 @@ $configData = Helper::appClasses();
   @if(!isset($navbarFull))
   <div class="app-brand demo">
     <a href="{{url('/')}}" class="app-brand-link">
-      <span class="app-brand-logo demo">
-        @include('_partials.macros',["height"=>20])
+      <span class="avatar">
+      <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="h-auto rounded-circle w-full">
       </span>
       <span class="app-brand-text demo menu-text fw-bold">{{config('variables.templateName')}}</span>
     </a>
