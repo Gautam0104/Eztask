@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
+    volumes:
+      - .:/var/www
+    networks:
+      - laravel-network
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: db # Use 'db' service name as the host for MySQL connection
+      DB_PORT: 3306
+      DB_DATABASE: laravel
+      DB_USERNAME: laravel # MySQL username as set in db service
+      DB_PASSWORD: password # MySQL password as set in db service
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: password
+    ports:
+      - '3306:3306'
+    networks:
+      - laravel-network
+
+networks:
+  laravel-network:
+    driver: bridge
